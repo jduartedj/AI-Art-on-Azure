@@ -1,4 +1,8 @@
-YOUR_TOKEN="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"
+import os
+
+#set your own diffusers token here (as an env var)
+YOUR_TOKEN=os.environ.get('YOUR_TOKEN')
+
 PYTORCH_CUDA_ALLOC_CONF="garbage_collection_threshold:0.6,max_split_size_mb:128"
 
 from flask import Flask

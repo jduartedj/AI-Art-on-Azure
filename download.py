@@ -1,4 +1,7 @@
-YOUR_TOKEN="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"
+import os
+
+#set your own diffusers token here (as an env var)
+YOUR_TOKEN=os.environ.get('YOUR_TOKEN')
 
 from diffusers import StableDiffusionPipeline
 
