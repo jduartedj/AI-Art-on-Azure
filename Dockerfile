@@ -18,6 +18,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+
+
 # Install pip requirements
 COPY requirements.txt .
 RUN python3 -m pip install -r requirements.txt
@@ -30,8 +32,10 @@ COPY . /app
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
-#DOES NOT WORK, need to find a way to pre-download the models so that this is done at image build
-#RUN wget http://0.0.0.0:5002/create_image/pink%20football
+#Download the prebuilt models
+ARG YOUR_TOKEN
+ENV YOUR_TOKEN=${YOUR_TOKEN}
+
 RUN python3 ./download.py
 RUN rm -f ./download.py
 
