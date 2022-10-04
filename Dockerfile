@@ -1,6 +1,6 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 # FROM python:3.8-slim
-FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
+FROM nvidia/cuda:11.4.2-runtime-ubuntu20.04
 
 #set up environment
 RUN apt-get update
