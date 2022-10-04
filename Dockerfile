@@ -30,8 +30,12 @@ COPY . /app
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
+#DOES NOT WORK, need to find a way to pre-download the models so that this is done at image build
+#RUN wget http://0.0.0.0:5002/create_image/pink%20football
+RUN python3 ./download.py
+RUN rm -f ./download.py
+
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["gunicorn", "--timeout", "3600", "--bind", "0.0.0.0:5002", "app:app"]
 
-#DOES NOT WORK, need to find a way to pre-download the models so that this is done at image build
-#RUN wget http://0.0.0.0:5002/create_image/pink%20football
+
